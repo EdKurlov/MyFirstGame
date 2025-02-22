@@ -1,25 +1,22 @@
 #!/bin/bash
 
 import pygame
-import sys
+import controls
 from cannon import Cannon
 
 def run():
 
     pygame.init()
-    screen = pygame.display.set_mode((1200, 700))
+    screen = pygame.display.set_mode((700, 700))
     pygame.display.set_caption('space defenders')
     bg_color = (0, 0, 0)
     cannon = Cannon(screen)
 
     while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-
+        controls.events(cannon)
+        cannon.update_cannon()
         screen.fill(bg_color)
         cannon.output()
         pygame.display.flip()
 
 run()
-
