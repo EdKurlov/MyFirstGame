@@ -3,6 +3,7 @@
 import pygame
 import controls
 from cannon import Cannon
+from pygame.sprite import Group
 
 def run():
 
@@ -11,12 +12,13 @@ def run():
     pygame.display.set_caption('space defenders')
     bg_color = (0, 0, 0)
     cannon = Cannon(screen)
+    bullets = Group()
 
     while True:
-        controls.events(cannon)
+        controls.events(screen, cannon, bullets)
         cannon.update_cannon()
-        screen.fill(bg_color)
-        cannon.output()
-        pygame.display.flip()
+        controls.update(bg_color, screen, cannon, bullets)
+        controls.update_bullets(bullets)
 
 run()
+
