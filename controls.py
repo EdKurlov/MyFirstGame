@@ -2,6 +2,7 @@
 import pygame
 import sys
 from bullet import Bullet
+from ino import Ino
 
 def events(screen, cannon, bullets):
     """ Processing of events"""
@@ -28,12 +29,13 @@ def events(screen, cannon, bullets):
             elif event.key == pygame.K_a:
                 cannon.mleft = False
 
-def update(bg_color, screen, cannon, bullets):
+def update(bg_color, screen, cannon, inos, bullets):
     """ Screen refresh"""
     screen.fill(bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     cannon.output()
+    inos.draw(screen)
     pygame.display.flip()
 
 def update_bullets(bullets):
@@ -43,4 +45,26 @@ def update_bullets(bullets):
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
 
+def update_inos(inos):
+    """ Ino position update"""
+    inos.update()
+
+def create_army(screen, inos):
+    """ Creation of the aliens army"""
+    ino = Ino(screen)
+    ino_width = ino.rect.width
+    number_ino_x = int((700 - 2 * ino_width) / ino_width)
+    ino_height = ino.rect.height
+    number_ino_y = int((700 - 100 - 2 * ino_height) / ino_height)
+
+    for row_number in range(number_ino_y - 6):
+        for ino_number in range(number_ino_x):
+            ino = Ino(screen)
+            ino.x = ino_width + ino_width * ino_number
+            ino.y = ino_height + ino_height * row_number
+            ino.rect.x = ino.x
+            ino.rect.y = ino.rect.height + ino.rect.height * row_number
+            inos.add(ino)
+        
+        
  

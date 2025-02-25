@@ -7,9 +7,9 @@ class Bullet(pygame.sprite.Sprite):
         """ Create a bullet in the cannon position"""
         super(Bullet, self).__init__()
         self.screen = screen
-        self.rect = pygame.Rect(0, 0, 2, 12)
+        self.rect = pygame.Rect(0, 0, 5, 12)
         self.color = 240, 19, 7
-        self.speed = 1
+        self.speed = 2
         self.rect.centerx = cannon.rect.centerx
         self.rect.top = cannon.rect.top
         self.y = float(self.rect.y)
