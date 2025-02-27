@@ -30,3 +30,7 @@ class Cannon():
 
         self.rect.centerx = self.center
 
+    def create_cannon(self):
+        """ Placement of the cannon in the center at the bottom"""
+        self.center = self.screen_rect.centerx
+
