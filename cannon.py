@@ -1,12 +1,13 @@
 #!/bin/bash
 
 import pygame
+from pygame.sprite import Sprite
 
-class Cannon():
+class Cannon(Sprite):
 
     def __init__(self, screen):
         """ Cannon initialization"""
-
+        super(Cannon, self).__init__()
         self.screen = screen
         self.image = pygame.image.load('images/cannon.png')
         self.rect = self.image.get_rect()
